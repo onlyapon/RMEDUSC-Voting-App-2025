@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cast Your Vote</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Club Logo" class="logo">
+    <h1>Cast Your Vote</h1>
+    <form id="vote-form"></form>
+    <button id="submit-vote">Submit Vote</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const category = urlParams.get('category');
+
+      fetch('/api/election-data')
+        .then(response => response.json())
+        .then(data => {
+          const { positions, candidates } = data;
+          const form = document.getElementById('vote-form');
+
+          const categoryPositions = positions.filter(p => p.category === category);
+
+          categoryPositions.forEach(position => {
+            const positionDiv = document.createElement('div');
+            positionDiv.classList.add('position');
+
+            const positionTitle = document.createElement('h3');
+            positionTitle.textContent = position.name;
+            positionDiv.appendChild(positionTitle);
+
+            const positionCandidates = candidates.filter(c => c.positionId === position.id);
+
+            if (position.max_votes > 1) {
+              const info = document.createElement('p');
+              info.textContent = `(Select up to ${position.max_votes})`;
+              positionDiv.appendChild(info);
+
+              positionCandidates.forEach(candidate => {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = position.id;
+                checkbox.value = candidate.id;
+
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(candidate.name));
+                positionDiv.appendChild(label);
+              });
+
+              const checkboxes = positionDiv.querySelectorAll('input[type="checkbox"]');
+              checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                  const checkedCount = Array.from(checkboxes).filter(c => c.checked).length;
+                  if (checkedCount > position.max_votes) {
+                    alert(`You can only select up to ${position.max_votes} candidates.`);
+                    checkbox.checked = false;
+                  }
+                });
+              });
+
+            } else {
+              positionCandidates.forEach(candidate => {
+                const label = document.createElement('label');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = position.id;
+                radio.value = candidate.id;
+                radio.required = true;
+
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(candidate.name));
+                positionDiv.appendChild(label);
+              });
+            }
+
+            form.appendChild(positionDiv);
+          });
+
+          document.getElementById('submit-vote').addEventListener('click', () => {
+            const form = document.getElementById('vote-form');
+            const formData = new FormData(form);
+            const selection = {};
+            const categoryPositions = positions.filter(p => p.category === category);
+
+            for (const position of categoryPositions) {
+              const values = formData.getAll(position.id);
+              if (values.length > 0) {
+                if (position.max_votes > 1) {
+                  selection[position.id] = values;
+                } else {
+                  selection[position.id] = values[0];
+                }
+              }
+            }
+
+            const vote = {
+              category,
+              selection,
+              timestamp: new Date().toISOString(),
+            };
+
+            fetch('/api/vote', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(vote),
+            })
+            .then(response => response.json())
+            .then(data => {
+              alert(data.message);
+              window.location.href = 'index.html';
+            });
+          });
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Election Results</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Club Logo" class="logo">
+    <h1>Election Results</h1>
+    <div id="results-container"></div>
+    <button id="reveal-next">Reveal Next Position</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let resultsData = null;
+      let positionKeys = [];
+      let revealedCount = 0;
+
+      fetch('/api/results')
+        .then(response => response.json())
+        .then(data => {
+          resultsData = data;
+          positionKeys = Object.keys(resultsData);
+        });
+
+      document.getElementById('reveal-next').addEventListener('click', () => {
+        if (!resultsData) return;
+
+        if (revealedCount < positionKeys.length) {
+          const positionId = positionKeys[revealedCount];
+          const positionResult = resultsData[positionId];
+          const resultsContainer = document.getElementById('results-container');
+          resultsContainer.innerHTML = ''; // Clear previous result
+
+          const positionDiv = document.createElement('div');
+          positionDiv.classList.add('position-result');
+
+          const positionTitle = document.createElement('h3');
+          positionTitle.textContent = positionResult.name;
+          positionDiv.appendChild(positionTitle);
+
+          const candidatesArray = Object.values(positionResult.candidates);
+          candidatesArray.sort((a, b) => b.votes - a.votes);
+
+          let winners = [];
+          if (positionId === 'exec-member') {
+            winners = candidatesArray.slice(0, 2);
+          } else {
+            winners.push(candidatesArray[0]);
+          }
+
+          const totalVotes = candidatesArray.reduce((acc, candidate) => acc + candidate.votes, 0);
+
+          candidatesArray.forEach(candidate => {
+            const candidateDiv = document.createElement('div');
+            candidateDiv.classList.add('candidate-result');
+
+            const isWinner = winners.some(w => w.name === candidate.name);
+
+            const nameSpan = document.createElement('span');
+            nameSpan.textContent = `${candidate.name}: ${candidate.votes} votes`;
+            if (isWinner) {
+              nameSpan.classList.add('winner');
+            }
+
+            const barContainer = document.createElement('div');
+            barContainer.classList.add('bar-container');
+
+            const bar = document.createElement('div');
+            bar.classList.add('bar');
+            const barWidth = totalVotes > 0 ? (candidate.votes / totalVotes) * 100 : 0;
+            bar.style.width = `${barWidth}%`;
+
+            barContainer.appendChild(bar);
+            candidateDiv.appendChild(nameSpan);
+            candidateDiv.appendChild(barContainer);
+            positionDiv.appendChild(candidateDiv);
+          });
+
+          resultsContainer.appendChild(positionDiv);
+          revealedCount++;
+        } else {
+          alert('All results have been revealed.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

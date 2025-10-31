@@ -1,0 +1,58 @@
+[
+  {
+    "id": "exec-member",
+    "name": "Executive Member",
+    "category": "RME 10",
+    "max_votes": 2
+  },
+  {
+    "id": "res-info-sec",
+    "name": "Research and Information Secretary",
+    "category": "RME 1-9"
+  },
+  {
+    "id": "cult-sec",
+    "name": "Cultural Secretary",
+    "category": "RME 1-9"
+  },
+  {
+    "id": "social-welfare-sec",
+    "name": "Social Welfare Secretary",
+    "category": "RME 1-9"
+  },
+  {
+    "id": "print-pub-sec",
+    "name": "Printing and Publication Secretary",
+    "category": "RME 1-9"
+  },
+  {
+    "id": "sports-sec",
+    "name": "Sports Secretary",
+    "category": "RME 1-9"
+  },
+  {
+    "id": "asst-res-info-sec",
+    "name": "Assistant Research and Information Secretary",
+    "category": "RME 1-9"
+  },
+  {
+    "id": "asst-cult-sec",
+    "name": "Assistant Cultural Secretary",
+    "category": "RME 1-9"
+  },
+  {
+    "id": "asst-social-welfare-sec",
+    "name": "Assistant Social Welfare Secretary",
+    "category": "RME 1-9"
+  },
+  {
+    "id": "asst-print-pub-sec",
+    "name": "Assistant Printing and Publication Secretary",
+    "category": "RME 1-9"
+  },
+  {
+    "id": "asst-sports-sec",
+    "name": "Assistant Sports Secretary",
+    "category": "RME 1-9"
+  }
+]

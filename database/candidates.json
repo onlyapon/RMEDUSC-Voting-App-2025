@@ -1,0 +1,77 @@
+[
+  {
+    "id": "cand1-exec-member",
+    "name": "X",
+    "positionId": "exec-member"
+  },
+  {
+    "id": "cand2-exec-member",
+    "name": "y",
+    "positionId": "exec-member"
+  },
+  {
+    "id": "cand3-exec-member",
+    "name": "z",
+    "positionId": "exec-member"
+  },
+  {
+    "id": "cand4-exec-member",
+    "name": "k",
+    "positionId": "exec-member"
+  },
+  {
+    "id": "cand5-exec-member",
+    "name": "l",
+    "positionId": "exec-member"
+  },
+  {
+    "id": "cand1-res-info-sec",
+    "name": "Candidate 1 (Research and Info Sec)",
+    "positionId": "res-info-sec"
+  },
+  {
+    "id": "cand1-cult-sec",
+    "name": "Candidate 1 (Cultural Sec)",
+    "positionId": "cult-sec"
+  },
+  {
+    "id": "cand1-social-welfare-sec",
+    "name": "Candidate 1 (Social Welfare Sec)",
+    "positionId": "social-welfare-sec"
+  },
+  {
+    "id": "cand1-print-pub-sec",
+    "name": "Candidate 1 (Printing and Pub Sec)",
+    "positionId": "print-pub-sec"
+  },
+  {
+    "id": "cand1-sports-sec",
+    "name": "Candidate 1 (Sports Sec)",
+    "positionId": "sports-sec"
+  },
+  {
+    "id": "cand1-asst-res-info-sec",
+    "name": "Candidate 1 (Asst. Research and Info Sec)",
+    "positionId": "asst-res-info-sec"
+  },
+  {
+    "id": "cand1-asst-cult-sec",
+    "name": "Candidate 1 (Asst. Cultural Sec)",
+    "positionId": "asst-cult-sec"
+  },
+  {
+    "id": "cand1-asst-social-welfare-sec",
+    "name": "Candidate 1 (Asst. Social Welfare Sec)",
+    "positionId": "asst-social-welfare-sec"
+  },
+  {
+    "id": "cand1-asst-print-pub-sec",
+    "name": "Candidate 1 (Asst. Printing and Pub Sec)",
+    "positionId": "asst-print-pub-sec"
+  },
+  {
+    "id": "cand1-asst-sports-sec",
+    "name": "Candidate 1 (Asst. Sports Sec)",
+    "positionId": "asst-sports-sec"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "category": "RME 10",
+    "selection": {
+      "exec-member": [
+        "cand1-exec-member",
+        "cand4-exec-member"
+      ]
+    },
+    "timestamp": "2025-10-31T18:35:43.945Z"
+  },
+  {
+    "category": "RME 1-9",
+    "selection": {
+      "res-info-sec": "cand1-res-info-sec",
+      "cult-sec": "cand1-cult-sec",
+      "social-welfare-sec": "cand1-social-welfare-sec",
+      "print-pub-sec": "cand1-print-pub-sec",
+      "sports-sec": "cand1-sports-sec",
+      "asst-res-info-sec": "cand1-asst-res-info-sec",
+      "asst-cult-sec": "cand1-asst-cult-sec",
+      "asst-social-welfare-sec": "cand1-asst-social-welfare-sec",
+      "asst-print-pub-sec": "cand1-asst-print-pub-sec",
+      "asst-sports-sec": "cand1-asst-sports-sec"
+    },
+    "timestamp": "2025-10-31T18:36:25.696Z"
+  },
+  {
+    "category": "RME 10",
+    "selection": {
+      "exec-member": [
+        "cand1-exec-member",
+        "cand2-exec-member"
+      ]
+    },
+    "timestamp": "2025-10-31T18:39:48.396Z"
+  }
+]
